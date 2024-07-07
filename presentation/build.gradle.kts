@@ -48,5 +48,15 @@ dependencies {
     implementation(project(":datas"))
     implementation(project(":domain"))
 
+    testImplementation("org.mockito:mockito-core:4.4.0")
+    testImplementation("org.mockito:mockito-inline:4.4.0")
+    testImplementation("junit:junit:4.12")
+//    testImplementation ("androidx.arch.core:core-common:2.2.0")
+//    testImplementation ("androidx.arch.core:core-runtime:2.2.0")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
+    //  testImplementation("junit:junit:4.12")
+    androidTestImplementation(libs.androidx.junit)
+
 
 }

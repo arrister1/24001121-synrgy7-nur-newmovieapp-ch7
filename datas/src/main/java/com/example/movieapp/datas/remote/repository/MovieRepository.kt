@@ -14,30 +14,56 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 
-class MovieRepository( private val remoteDataSource: RemoteDataSource): IMovieRepository {
+//class MovieRepository( private val remoteDataSource: RemoteDataSource): IMovieRepository {
+//
+//
+//    override fun getAllMovie(): Flow<Resource<List<Movie>>> {
+//        return flow {
+//            emit(Resource.Loading())
+//            remoteDataSource.getAllMovie().map { apiResponse ->
+//                when(apiResponse){
+//                    is ApiResponse.Success -> {
+//                        val movieList = apiResponse.data.map { it.toMovie() }
+//                        Resource.Success(movieList)
+//                    }
+//                    is ApiResponse.Empty ->{
+//                        Resource.Success(emptyList())
+//                    }
+//                    is ApiResponse.Error -> {
+//                        Resource.Error(apiResponse.errorMessage)
+//                    }
+//                }
+//            }.collect{resource ->
+//                emit(resource)
+//            }
+//            }.catch { e ->
+//                emit(Resource.Error(e.message ?: "An unknown error"))
+//        }.flowOn(Dispatchers.IO)
+//        }
+//    }
 
+
+class MovieRepository(private val remoteDataSource: RemoteDataSource) : IMovieRepository {
 
     override fun getAllMovie(): Flow<Resource<List<Movie>>> {
         return flow {
-            emit(Resource.Loading())
-            remoteDataSource.getAllMovie().map { apiResponse ->
-                when(apiResponse){
-                    is ApiResponse.Success -> {
-                        val movieList = apiResponse.data.map { it.toMovie() }
-                        Resource.Success(movieList)
+            try {
+                emit(Resource.Loading())
+                val apiResponse = remoteDataSource.getAllMovie()
+                apiResponse.collect { response ->
+                    val resource = when (response) {
+                        is ApiResponse.Success -> {
+                            val movieList = response.data.map { it.toMovie() }
+                            Resource.Success(movieList)
+                        }
+                        is ApiResponse.Empty -> Resource.Success(emptyList())
+                        is ApiResponse.Error -> Resource.Error(response.errorMessage)
                     }
-                    is ApiResponse.Empty ->{
-                        Resource.Success(emptyList())
-                    }
-                    is ApiResponse.Error -> {
-                        Resource.Error(apiResponse.errorMessage)
-                    }
+                    emit(resource)
                 }
-            }.collect{resource ->
-                emit(resource)
+            } catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "An unknown error occurred"))
             }
-            }.catch { e ->
-                emit(Resource.Error(e.message ?: "An unknown error"))
         }.flowOn(Dispatchers.IO)
-        }
     }
+}
