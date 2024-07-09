@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), com.example.movieapp.presentation.adap
         setupObservers()
 
         // Panggil ViewModel untuk mengambil data film
-        //viewModels.getMoviePopular()
+        viewModels.getAllMovie()  // Panggil fungsi getAllMovie untuk memulai pengambilan data
     }
 
     private fun setupUI() {
