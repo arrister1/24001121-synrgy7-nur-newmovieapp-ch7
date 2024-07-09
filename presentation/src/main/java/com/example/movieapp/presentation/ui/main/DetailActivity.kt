@@ -21,7 +21,7 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra("EXTRA_MOVIE", Movie::class.java )
         } else {
             @Suppress("DEPRECATION")
-            intent.getParcelableExtra<Movie>("EXTRA_MOVIE")
+            intent.getParcelableExtra("EXTRA_MOVIE")
 
         }
 

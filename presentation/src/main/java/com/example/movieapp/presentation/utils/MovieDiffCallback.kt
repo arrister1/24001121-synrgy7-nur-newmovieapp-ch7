@@ -1,7 +1,6 @@
 package com.example.movieapp.presentation.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.movieapp.datas.remote.response.Movies
 import com.example.movieapp.domain.model.Movie
 
 

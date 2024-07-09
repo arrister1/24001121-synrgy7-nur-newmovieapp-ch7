@@ -70,11 +70,11 @@ class DataStore (val context: Context) {
         }
     }
 
-    suspend fun clearUserData(){
-        context.dataStore.edit { preferences ->
-            preferences.clear()
-        }
-    }
+//    suspend fun clearUserData(){
+//        context.dataStore.edit { preferences ->
+//            preferences.clear()
+//        }
+//    }
 
     suspend fun logout() {
         context.dataStore.edit{ preferences ->

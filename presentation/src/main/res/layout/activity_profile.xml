@@ -26,6 +26,8 @@
 
     <ImageView
         android:id="@+id/img_profile"
+        android:contentDescription="@string/photo_profile"
+        android:src="@drawable/img_profile"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="20dp"
@@ -74,7 +76,7 @@
             android:layout_width="155dp"
             android:layout_height="35dp"
             app:icon="@drawable/baseline_add_24"
-            android:text="Add image"
+            android:text="@string/add_image"
             android:layout_marginTop="20dp"
             android:layout_marginStart="40dp"
             android:backgroundTint="@color/red8"
@@ -90,7 +92,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
         app:icon="@drawable/baseline_edit_24"
-        android:text="Edit image"
+        android:text="@string/edit_image"
         android:layout_marginEnd="40dp"
         android:backgroundTint="@color/red8"
         android:textColor="@color/black"
@@ -118,6 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
+            android:inputType="text"
             android:hint="@string/username"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -135,6 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
+            android:inputType="textPersonName"
             android:hint="@string/full_name"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -152,6 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
+            android:inputType="date"
             android:hint="@string/date_of_birth"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -170,6 +175,7 @@
             android:layout_height="match_parent"
             android:maxLines="1"
             android:hint="@string/address"
+            android:inputType="textMultiLine"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,6 +216,7 @@
 
         <ImageView
             android:id="@+id/btn_back"
+            android:contentDescription="@string/back_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="9dp"

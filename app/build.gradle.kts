@@ -21,12 +21,26 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    flavorDimensions += "version"
+    productFlavors{
+        create("free"){
+            dimension ="version"
+            applicationIdSuffix =".free"
+            versionNameSuffix= "-free"
+        }
+        create("premium"){
+            dimension ="version"
+            applicationIdSuffix =".premium"
+            versionNameSuffix= "-premium"
         }
     }
 
@@ -40,6 +54,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
 }
 
 dependencies {

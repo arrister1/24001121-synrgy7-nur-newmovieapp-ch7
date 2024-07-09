@@ -37,7 +37,8 @@ class MovieAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
         holder.bind(moviesList[position])
     }
 
-    inner class ViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
+        @Suppress("PrivatePropertyName")
         private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
 
         init {

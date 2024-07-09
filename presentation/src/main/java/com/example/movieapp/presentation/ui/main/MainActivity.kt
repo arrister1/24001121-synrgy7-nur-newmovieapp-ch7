@@ -3,24 +3,17 @@ package com.example.movieapp.presentation.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.common.Resource
 import com.example.movieapp.datas.local.DataStore
 import com.example.movieapp.domain.model.Movie
-import com.example.movieapp.presentation.R
 import com.example.movieapp.presentation.databinding.ActivityMainBinding
 import com.example.movieapp.presentation.ui.user.ProfileActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
-
-
 
 
 class MainActivity : AppCompatActivity(), com.example.movieapp.presentation.adapter.MovieAdapter.OnItemClickListener {
@@ -50,15 +43,10 @@ class MainActivity : AppCompatActivity(), com.example.movieapp.presentation.adap
         setupObservers()
 
         // Panggil ViewModel untuk mengambil data film
-        viewModels.getAllMovie()  // Panggil fungsi getAllMovie untuk memulai pengambilan data
+        viewModels.getAllMovie()
     }
 
-    private fun setupUI() {
-        setContentView(R.layout.activity_main)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
 
     private fun setupUsername() {
         lifecycleScope.launch {
@@ -76,23 +64,25 @@ class MainActivity : AppCompatActivity(), com.example.movieapp.presentation.adap
     }
 
     private fun setupObservers(){
-        viewModels.movie.observe(this, {resources ->
-            when(resources){
+        viewModels.movie.observe(this) { resources ->
+            when (resources) {
                 is Resource.Loading -> {
                     //binding.progressBar.visibility = View.VISIBLE
                 }
+
                 is Resource.Success -> {
                     //binding.progressBar.visibility = View.GONE
                     resources.data?.let { movieList ->
                         adapter.setMovieList(movieList)
                     }
                 }
+
                 is Resource.Error -> {
                     //  binding.progressBar.visibility = View.GONE
                     Log.e("MainActivity", resources.message ?: "Unknown error")
                 }
             }
-        })
+        }
     }
 
 
