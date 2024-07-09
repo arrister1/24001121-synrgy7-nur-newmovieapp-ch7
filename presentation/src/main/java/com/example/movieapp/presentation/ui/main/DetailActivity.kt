@@ -18,8 +18,8 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val movies = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra("EXTRA_MOVIE",Movie::class.java )
-            } else {
+            intent.getParcelableExtra("EXTRA_MOVIE", Movie::class.java )
+        } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra<Movie>("EXTRA_MOVIE")
 

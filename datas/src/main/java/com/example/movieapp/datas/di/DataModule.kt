@@ -1,7 +1,5 @@
 package com.example.movieapp.datas.di
 
-import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.movieapp.datas.local.DataStore
 import com.example.movieapp.datas.remote.RemoteDataSource
 import com.example.movieapp.datas.remote.network.ApiService
@@ -18,10 +16,8 @@ import java.util.concurrent.TimeUnit
 object DataModule {
     val networkModule = module {
         single {
-            val context: Context = androidContext()
             OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addInterceptor(ChuckerInterceptor.Builder(context).build())
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()
