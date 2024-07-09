@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
     id ("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
+
 
 android {
     namespace = "com.example.movieapp"
@@ -21,7 +23,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+       release{
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -62,7 +64,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":datas"))
     implementation(project(":domain"))
-    implementation(project(":presentation"))
 
 
 
@@ -80,6 +81,9 @@ dependencies {
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
 
 
@@ -106,6 +110,14 @@ dependencies {
     implementation ("io.insert-koin:koin-androidx-workmanager:3.3.0")
     implementation ("io.insert-koin:koin-androidx-navigation:3.3.0")
 
+
+    testImplementation("org.mockito:mockito-core:4.4.0")
+    testImplementation("org.mockito:mockito-inline:4.4.0")
+    testImplementation("junit:junit:4.12")
+//    testImplementation ("androidx.arch.core:core-common:2.2.0")
+//    testImplementation ("androidx.arch.core:core-runtime:2.2.0")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
