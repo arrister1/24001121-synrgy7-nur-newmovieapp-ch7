@@ -84,6 +84,7 @@ dependencies {
     testImplementation("junit:junit:4.12")
     testImplementation("junit:junit:4.12")
     testImplementation("junit:junit:4.12")
+    //noinspection KaptUsageInsteadOfKsp
     kapt ("com.github.bumptech.glide:compiler:4.12.0")
 
 
